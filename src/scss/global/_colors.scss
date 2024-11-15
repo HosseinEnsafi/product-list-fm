@@ -1,0 +1,23 @@
+$clr-text: hsl(20, 22%, 11%);
+$clr-red: hwb(14 6% 22%);
+$clr-green: hsl(159, 69%, 38%);
+$clr-rose-50: hsl(20, 50%, 98%);
+$clr-rose-100: hsl(13, 31%, 94%);
+$clr-rose-300: hsl(14, 25%, 72%);
+$clr-rose-400: hsl(7, 20%, 60%);
+$clr-rose-500: hsl(12, 20%, 44%);
+$clr-rose-900: hsl(14, 65%, 9%);
+$clr-bg: $clr-rose-50;
+
+:root {
+  --clr-text: #{$clr-text};
+  --clr-red: #{$clr-red};
+  --clr-green: #{$clr-green};
+  --clr-rose-50: #{$clr-rose-50};
+  --clr-rose-100: #{$clr-rose-100};
+  --clr-rose-300: #{$clr-rose-300};
+  --clr-rose-400: #{$clr-rose-400};
+  --clr-rose-500: #{$clr-rose-500};
+  --clr-rose-900: #{$clr-rose-900};
+  --clr-bg: #{$clr-bg};
+}

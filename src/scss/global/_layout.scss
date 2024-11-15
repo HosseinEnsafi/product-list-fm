@@ -1,0 +1,64 @@
+@use "../util/" as u;
+
+.container {
+  margin-inline: auto;
+  width: min(100% - 48px, u.rem(1280));
+
+  &.has-padding {
+    padding-block: 48px;
+
+    @include u.breakpoint(md) {
+      padding-block: 60px;
+    }
+  }
+}
+
+.backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  background-color: rgba($color: #000, $alpha: 0.3);
+}
+
+.modal {
+  position: fixed;
+  top: 12vh;
+  bottom: 0;
+  z-index: 20;
+  inset-inline: 0;
+  border-radius: 8px;
+  background-color: white;
+  padding: u.rem(32) u.rem(22);
+  overflow-y: auto;
+
+  @include u.breakpoint(md) {
+    transform: translate(-50%, -50%);
+    inset: 50% auto auto 50%;
+    width: u.rem(600);
+    height: min-content;
+  }
+}
+
+.container__products {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "meals"
+    "cart";
+  gap: u.rem(32);
+  padding-block: u.rem(28);
+
+  main {
+    grid-area: meals;
+  }
+
+  aside {
+    grid-area: cart;
+  }
+
+  @include u.breakpoint(md) {
+    grid-template-columns: 10fr 4fr;
+    grid-template-areas: "meals cart";
+    padding-block: u.rem(86);
+  }
+}

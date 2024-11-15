@@ -1,0 +1,134 @@
+@use "../util" as u;
+@use "sass:color";
+@use "../global/colors" as c;
+.order-meals {
+  overflow-y: auto;
+
+  &__check-img {
+    margin-bottom: u.rem(24);
+  }
+
+  &__title {
+    width: 70%;
+  }
+
+  &__subtitle {
+    margin-block: u.rem(6) u.rem(28);
+    color: var(--clr-rose-400);
+  }
+
+  &__summary {
+    margin-bottom: u.rem(32);
+    border-radius: u.rem(8);
+    background-color: var(--clr-rose-100);
+    padding: u.rem(22);
+    max-height: u.rem(240);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: u.rem(6);
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: u.rem(8);
+      background-color: var(--clr-rose-200);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: u.rem(1) solid var(--clr-rose-100);
+      border-radius: u.rem(8);
+      background-color: var(--clr-rose-400);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--clr-rose-500);
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid color.adjust(c.$clr-rose-400, $lightness: 25%);
+    padding-block: u.rem(12);
+
+    &-left {
+      display: flex;
+    }
+
+    &-image {
+      margin-right: u.rem(12);
+      border-radius: u.rem(8);
+      width: u.rem(48);
+      height: u.rem(48);
+    }
+
+    &-content {
+      flex-grow: 1;
+    }
+
+    &-name {
+      width: 140px;
+      overflow: hidden;
+      font-weight: 600;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-quantity-price {
+      display: flex;
+      gap: 1rem;
+    }
+
+    &-quantity,
+    &-price {
+      font-size: u.rem(14);
+    }
+
+    &-quantity {
+      color: var(--clr-red);
+      font-weight: 600;
+    }
+
+    &-price {
+      color: var(--clr-rose-500);
+      &::before {
+        content: "@ ";
+      }
+    }
+
+    &-right {
+    }
+
+    &-total-price {
+      font-weight: 600;
+      font-size: u.rem(18);
+    }
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: u.rem(18);
+
+    &-label {
+      font-weight: bold;
+    }
+
+    &-price {
+      color: var(--clr-primary);
+      font-size: u.rem(20);
+    }
+  }
+
+  &__button {
+    @include u.btn();
+  }
+}

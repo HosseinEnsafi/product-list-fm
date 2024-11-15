@@ -1,0 +1,104 @@
+@use "../util" as u;
+@use "../global/colors" as c;
+@use "sass:color";
+
+.cart {
+  border-radius: u.rem(8);
+  background-color: white;
+  padding: u.rem(32) u.rem(24);
+
+  &__title {
+    color: var(--clr-red);
+    font-size: u.rem(20);
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: u.rem(48);
+
+    p {
+      margin-top: u.rem(8);
+      color: var(--clr-rose-500);
+      font-size: u.rem(12);
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--clr-rose-100);
+    padding-block: u.rem(20);
+    &-title {
+      font-size: u.rem(16);
+    }
+
+    &-stats {
+      display: inline-flex;
+      gap: 18px;
+      margin-top: 16px;
+      color: var(--clr-rose-400);
+    }
+
+    &-qty {
+      color: var(--clr-red);
+      font-weight: 600;
+    }
+
+    &-price {
+      &::before {
+        content: "@ ";
+      }
+    }
+
+    &-total {
+      color: var(--clr-rose-500);
+    }
+
+    &-action {
+      display: inline-grid;
+      place-content: center;
+      align-self: center;
+      cursor: pointer;
+      border: 2px solid var(--clr-rose-400);
+      border-radius: 100%;
+      padding: u.rem(2);
+    }
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    margin-block: u.rem(24);
+    h4 {
+      font-size: u.rem(18);
+    }
+
+    span {
+      font-size: u.rem(14);
+    }
+  }
+
+  &__carbon {
+    display: flex;
+    justify-content: space-between;
+    margin-block: u.rem(24);
+    border-radius: u.rem(8);
+    background: var(--clr-rose-50);
+    padding: u.rem(15) u.rem(24);
+
+    p {
+      font-size: u.rem(14);
+    }
+  }
+
+  &__confirm {
+    @include u.btn();
+  }
+}

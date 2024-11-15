@@ -1,0 +1,75 @@
+@use "functions" as f;
+@use "../global/colors" as c;
+@use "sass:math";
+@use "sass:string";
+@use "sass:map";
+@use "sass:color";
+
+// Based on: https://chriskirknielsen.com/blog/modern-fluid-typography-with-clamp/
+@mixin fs-fluid($min-vw, $max-vw, $min-value, $max-value) {
+  $factor: math.div(1, ($max-vw - $min-vw)) * ($max-value - $min-value);
+  $calc-value: string.unquote("#{ $min-value - ($min-vw * $factor) } + #{ 100vw * $factor }");
+
+  font-size: $min-value; // Fallback for older browsers
+  font-size: clamp(
+    #{if($min-value > $max-value, $max-value, $min-value)},
+    #{$calc-value},
+    #{if($min-value > $max-value, $min-value, $max-value)}
+  );
+}
+
+// https://tailwindcss.com/docs/responsive-design
+$breakpoints: (
+  "sm": f.em(640),
+  "md": f.em(768),
+  "lg": f.em(1024),
+  "xl": f.em(1280),
+  "2xl": f.em(1536),
+);
+
+@mixin breakpoint($size) {
+  @media (width >= map.get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (width < map.get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+@mixin center-flex($inline: false) {
+  display: if($inline, inline-flex, flex);
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin center-grid($inline: false) {
+  display: if($inline, inline-grid, grid);
+  place-content: center;
+}
+
+@mixin btn(
+  $bg-color: c.$clr-red,
+  $hover-darkness: -10%,
+  $border-radius: 32px,
+  $padding-y: 16px,
+  $padding-x: 32px,
+  $width: 100%,
+  $color: white
+) {
+  transition: background 150ms ease-out;
+  cursor: pointer;
+  border: none;
+  border-radius: $border-radius;
+  background-color: $bg-color;
+  padding: $padding-y $padding-x;
+  width: $width;
+  color: $color;
+  text-align: center;
+
+  &:hover {
+    background-color: color.adjust($bg-color, $lightness: $hover-darkness);
+  }
+}
